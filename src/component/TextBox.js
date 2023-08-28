@@ -75,7 +75,7 @@ export default function TextBox(prop) {
             placeholder="Enter Text Here"
             onChange={textonChange}
             value={text}
-            rows="12"
+            rows="10"
             style={{backgroundColor:prop.textColor === '#343a40'? '#f8f9fa':'#343a40',color:prop.textColor}}
           ></textarea>
         </div>

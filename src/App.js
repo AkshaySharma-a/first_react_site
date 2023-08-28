@@ -2,15 +2,15 @@ import './App.css';
 import React from "react";
 import NavBar from './component/NavBar';
 import TextBox from './component/TextBox';
-// import About from './component/About';
+import About from './component/About';
 import Alert from './component/Alert';
 import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Link
 } from "react-router-dom";
-
 
 function App() {
 
@@ -33,7 +33,7 @@ function App() {
 
   }
 
-  // =======>dark or light mode <======
+    // =======>dark or light mode <======
 
   const toggeldarkmode = () => {
     if (Mode === "light") {
@@ -54,6 +54,26 @@ function App() {
     }
   }
 
+
+  // =======>dark or Color mode <======
+
+  const[colorMode,setColorMode]=useState("")
+
+
+  const toggelColorMode = (newValue) => {
+    setColorMode(newValue)
+    document.body.style.backgroundColor = colorMode
+    // document.body.style.Color =ColorChecker(colorMode)
+  }
+
+
+ 
+
+
+  
+
+  
+
   return (
 
     // =====>component<=====
@@ -62,37 +82,26 @@ function App() {
     <>
       {/* =====>title<====== */}
 
-      <NavBar Title="Text Manipulation" Abot="About" Home="Home" Mode={Mode} toggeldarkmode={toggeldarkmode} text={text} />
+      <NavBar Title="Text Manipulation" Abot="About" Home="Home" Mode={Mode} toggeldarkmode={toggeldarkmode} text={text} textColor={textColor} toggelColorMode={toggelColorMode} />
 
       {/* =====>alert<====== */}
 
       <Alert alert={alertText} textColor={textColor} />
 
-
-      {/* ======> About <======
-      <div className="container">
-        <About textColor={textColor} />
-      </div> */}
-
-      {/* =====>text box<====== */}
-      <div className="container my-3" >
-        <TextBox Heading=" Let's Modify your text" Mode={Mode} textColor={textColor} showAlert={showAlert} /></div>
-
-
-      {/* =====>router<======
+      {/* =====>router<====== */}
       <Router>
         <Routes>
 
           {/* ======> About <====== */}
-      {/* <Route path="/about" element={<div className="container"><About textColor={textColor} />
-          </div>}></Route> */}
+          <Route exact path="/about" element={<div className="container"><About textColor={textColor} />
+          </div>}></Route>
 
-      {/* =====>text box<====== */}
-      {/* <Route path="/" element={<div className="container my-3" >
-            <TextBox Heading=" Let's Modify your text" Mode={Mode} textColor={textColor} showAlert={showAlert} /></div>}> </Route> */}
+          {/* =====>text box<====== */}
+          <Route exact path="/" element={<div className="container my-3" >
+            <TextBox Heading=" Let's Modify your text" Mode={Mode} textColor={textColor} showAlert={showAlert} /></div>}> </Route>
 
-      {/* </Routes>
-      </Router> */} 
+        </Routes>
+      </Router>
 
     </>
   );
