@@ -48,7 +48,13 @@ export default function TextBox(prop) {
     setText("")
     prop.showAlert("Clear success","success");
   }
+
+  const removExtraSpace = () => {
+    text.replace(' ','+')
+  }
   
+  const words = text.match(/\b\w+\b/g);
+  const wordCount = words ? words.length : 0;
 
   return (
     <>
@@ -91,7 +97,7 @@ export default function TextBox(prop) {
         <h1>More Details</h1>
 
         <h3>
-          word : {text.split(" ").length -1} <br />
+          word : {wordCount} <br />
           charactor : {text.replaceAll(" ", "").length} <br />
           reading time :{" "}
           {text.split(" ").length *  0.00769230769 - 0.00769230769 } minute
